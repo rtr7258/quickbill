@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickBill Invoice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      padding: 20px;
+      color: #333;
+    }
+    .invoice-box {
+      background: #fff;
+      padding: 30px;
+      border: 1px solid #ddd;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-box" id="invoice">
+    <h2>QuickBill Invoice</h2>
+    <p><strong>Client Name:</strong> <span id="clientName"></span></p>
+    <p><strong>Amount (INR):</strong> ₹<span id="amount"></span></p>
+    <p><strong>Date:</strong> <span id="date"></span></p>
+    <p><strong>Work Description:</strong> <span id="work"></span></p>
+  </div>
+  <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    document.getElementById('clientName').textContent = urlParams.get('name');
+    document.getElementById('amount').textContent = urlParams.get('amount');
+    document.getElementById('date').textContent = urlParams.get('date');
+    document.getElementById('work').textContent = urlParams.get('work');
+  </script>
+</body>
+</html>
