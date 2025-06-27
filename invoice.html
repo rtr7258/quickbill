@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuickBill Invoice</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+      color: #000;
+      padding: 20px;
+    }
+    .invoice-box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+      border-radius: 10px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 16px;
+      margin: 8px 0;
+    }
+    img {
+      max-height: 80px;
+      margin-bottom: 15px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+    }
+    button:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-box">
+    <h2>QuickBill Invoice</h2>
+    
+    <img id="logo" src="" alt="Client Logo" style="display: none;" />
+    
+    <p><strong>Client Name:</strong> <span id="clientName"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Project Title:</strong> <span id="title"></span></p>
+    <p><strong>Description:</strong> <span id="desc"></span></p>
+    <p><strong>Amount:</strong> <span id="currency"></span><span id="amount"></span></p>
+    <p><strong>Due Date:</strong> <span id="date"></span></p>
+    <p><strong>Preferred Language:</strong> <span id="lang"></span></p>
+    
+    <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+  </div>
+
+  <script>
+    const p = new URLSearchParams(window.location.search);
+    document.getElementById('clientName').textContent = p.get('name');
+    document.getElementById('email').textContent = p.get('email');
+    document.getElementById('title').textContent = p.get('title');
+    document.getElementById('desc').textContent = p.get('desc');
+    document.getElementById('amount').textContent = p.get('amount');
+    document.getElementById('currency').textContent = p.get('currency') + ' ';
+    document.getElementById('date').textContent = p.get('date');
+    document.getElementById('lang').textContent = p.get('lang');
+
+    // Show logo if available
+    const logo = p.get('logo');
+    if (logo) {
+      const imgEl = document.getElementById('logo');
+      imgEl.src = logo;
+      imgEl.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
